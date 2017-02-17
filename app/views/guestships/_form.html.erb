@@ -1,0 +1,27 @@
+<%= form_for [@event, guestship] do |f| %>
+  <% if guestship.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(guestship.errors.count, "error") %> prohibited this guestship from being saved:</h2>
+
+      <ul>
+      <% guestship.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :user_id %>
+    <%= f.text_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :event_id %>
+    <%= f.text_field :event_id %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,1 @@
+json.array! @guestships, partial: 'guestships/guestship', as: :guestship
