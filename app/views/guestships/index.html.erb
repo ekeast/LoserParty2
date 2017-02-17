@@ -14,16 +14,11 @@
   <tbody>
     <% @guestships.each do |guestship| %>
       <tr>
-        <td><%= guestship.user %></td>
-        <td><%= guestship.event %></td>
-        <td><%= link_to 'Show', guestship %></td>
-        <td><%= link_to 'Edit', edit_guestship_path(guestship) %></td>
-        <td><%= link_to 'Destroy', guestship, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= guestship.user.email %></td>
+        <td><%= guestship.event.name %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Guestship', new_guestship_path %>

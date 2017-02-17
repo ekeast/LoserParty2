@@ -4,7 +4,8 @@ class GuestshipsController < ApplicationController
   # GET /guestships
   # GET /guestships.json
   def index
-    @guestships = Guestship.all
+    @event = Event.find(params[:event_id])
+    @guestships = @event.guestships.all
   end
 
   # GET /guestships/1
@@ -26,11 +27,12 @@ class GuestshipsController < ApplicationController
   # POST /guestships.json
   def create
     @event = Event.find(params[:event_id])
-    @guestship = Guestship.build(guestship_params)
+    @guestship = Guestship.new(guestship_params)
+    @guestship.event = @event
 
     respond_to do |format|
       if @guestship.save
-        format.html { redirect_to @guestship, notice: 'Guestship was successfully created.' }
+        format.html { redirect_to event_guestships_path, notice: 'Guestship was successfully created.' }
         format.json { render :show, status: :created, location: @guestship }
       else
         format.html { render :new }
@@ -71,6 +73,6 @@ class GuestshipsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def guestship_params
-      params.require(:guestship).permit(:user_id)
+      params.require(:guestship).permit(:user_id, :event_id)
     end
 end
