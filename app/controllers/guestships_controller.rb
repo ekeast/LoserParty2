@@ -29,9 +29,14 @@ class GuestshipsController < ApplicationController
     @event = Event.find(params[:event_id])
     @guestship = Guestship.new(guestship_params)
     @guestship.event = @event
+    if User.where(email: "#{@guestship.email}").first
+      @guestship.user_id = User.where(email: "#{@guestship.email}").first.id
+    end
+
+
 
     respond_to do |format|
-      if @guestship.save
+      if @guestship.save && @guestship.user
         format.html { redirect_to event_guestships_path, notice: 'Guestship was successfully created.' }
         format.json { render :show, status: :created, location: @guestship }
       else
@@ -73,6 +78,6 @@ class GuestshipsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def guestship_params
-      params.require(:guestship).permit(:user_id, :event_id)
+      params.require(:guestship).permit(:event_id, :email)
     end
 end
