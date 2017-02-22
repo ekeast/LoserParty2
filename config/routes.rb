@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :events do
     resources :guestships
+    resources :invites
   end
   get 'home/index'
 
