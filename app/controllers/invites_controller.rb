@@ -8,6 +8,10 @@ class InvitesController < ApplicationController
     @invites = @event.invites.all
   end
 
+  def my_invites
+    @invites = Invite.where(recipient: current_user)
+  end
+
   # GET /invites/1
   # GET /invites/1.json
   def show
