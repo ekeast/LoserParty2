@@ -39,6 +39,8 @@ class GuestshipsController < ApplicationController
       if @guestship.save && @guestship.user
         format.html { redirect_to event_guestships_path, notice: 'Guestship was successfully created.' }
         format.json { render :show, status: :created, location: @guestship }
+        @invite = Invite.where(recipient_id: current_user, event: @guestship.event).first
+        @invite.destroy
       else
         format.html { render :new }
         format.json { render json: @guestship.errors, status: :unprocessable_entity }

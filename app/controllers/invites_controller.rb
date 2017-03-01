@@ -75,16 +75,6 @@ class InvitesController < ApplicationController
     end
   end
 
-  def accept
-    @guestship = Guestship.new
-    @guestship = Guestship.create(user_id: @invite.recipient_id, event_id: @invite.event_id, email: @invite.email)
-
-    @invite.destroy
-    respond_to do |format|
-      format.html { redirect_to invites_url, notice: 'Invite was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
