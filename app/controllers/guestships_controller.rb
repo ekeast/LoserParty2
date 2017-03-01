@@ -27,7 +27,7 @@ class GuestshipsController < ApplicationController
   # POST /guestships.json
   def create
     @event = Event.find(params[:event_id])
-    @guestship = Guestship.new(guestship_params)
+    @guestship = Guestship.create(guestship_params)
     @guestship.event = @event
     if User.where(email: "#{@guestship.email}").first
       @guestship.user_id = User.where(email: "#{@guestship.email}").first.id

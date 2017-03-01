@@ -1,4 +1,4 @@
-<%= form_for [@event, guestship] do |f| %>
+<%= form_for [event, guestship] do |f| %>
   <% if guestship.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(guestship.errors.count, "error") %> prohibited this guestship from being saved:</h2>
@@ -12,9 +12,13 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :email %>
-    <%= f.text_field :email %>
+    <%= f.hidden_field :email, :value => current_user.email %>
   </div>
+
+  <div class="field">
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+  </div>
+
 
   <div class="actions">
     <%= f.submit %>

@@ -17,7 +17,7 @@
       <tr>
         <td><%= User.where(id: invite.sender_id).first.email %></td>
         <td><%= invite.event.name %></td>
-        <td><%= button_to "Accept", event_guestships_path(invite.event), :method => :post%></td>
+        <td><%= render 'guestships/form', event: invite.event, guestship: Guestship.new %>
       </tr>
     <% end %>
   </tbody>

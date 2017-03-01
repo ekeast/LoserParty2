@@ -1,5 +1,5 @@
 class InvitesController < ApplicationController
-  before_action :set_invite, only: [:show, :edit, :update, :destroy]
+  before_action :set_invite, only: [:show, :edit, :update, :destroy, :accept]
 
   # GET /invites
   # GET /invites.json
@@ -68,6 +68,17 @@ class InvitesController < ApplicationController
   # DELETE /invites/1
   # DELETE /invites/1.json
   def destroy
+    @invite.destroy
+    respond_to do |format|
+      format.html { redirect_to invites_url, notice: 'Invite was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
+  def accept
+    @guestship = Guestship.new
+    @guestship = Guestship.create(user_id: @invite.recipient_id, event_id: @invite.event_id, email: @invite.email)
+
     @invite.destroy
     respond_to do |format|
       format.html { redirect_to invites_url, notice: 'Invite was successfully destroyed.' }
