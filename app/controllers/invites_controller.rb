@@ -14,8 +14,8 @@ class InvitesController < ApplicationController
 
   # GET /invites/1
   # GET /invites/1.json
-  def show
-  end
+  # def show
+  # end
 
   # GET /invites/new
   def new
@@ -53,24 +53,24 @@ class InvitesController < ApplicationController
 
   # PATCH/PUT /invites/1
   # PATCH/PUT /invites/1.json
-  def update
-    respond_to do |format|
-      if @invite.update(invite_params)
-        format.html { redirect_to @invite, notice: 'Invite was successfully updated.' }
-        format.json { render :show, status: :ok, location: @invite }
-      else
-        format.html { render :edit }
-        format.json { render json: @invite.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  # def update
+  #   respond_to do |format|
+  #     if @invite.update(invite_params)
+  #       format.html { redirect_to @invite, notice: 'Invite was successfully updated.' }
+  #       format.json { render :show, status: :ok, location: @invite }
+  #     else
+  #       format.html { render :edit }
+  #       format.json { render json: @invite.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # DELETE /invites/1
   # DELETE /invites/1.json
   def destroy
     @invite.destroy
     respond_to do |format|
-      format.html { redirect_to invites_url, notice: 'Invite was successfully destroyed.' }
+      format.html { redirect_to :back, notice: 'Invite was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
