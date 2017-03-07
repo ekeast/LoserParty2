@@ -25,5 +25,11 @@
   <%= @event.time %>
 </p>
 
+Guests:
+
+<% @guestships.each do |guestship| %>
+  <%= guestship.email %>
+<% end %>
+
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   end
   get 'home/index'
   get 'invites/my_invites'
+  get 'guestships/my_guestships'
 
 
   devise_for :users

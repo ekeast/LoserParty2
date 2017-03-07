@@ -8,6 +8,10 @@ class GuestshipsController < ApplicationController
     @guestships = @event.guestships.all
   end
 
+  def my_guestships
+    @guestships = Guestship.where(user: current_user)
+  end
+
   # GET /guestships/1
   # GET /guestships/1.json
   def show

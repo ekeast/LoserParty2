@@ -1,0 +1,36 @@
+<div class="container">
+<p id="notice"><%= notice %></p>
+
+<h1>My Outstanding Invites</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Event</th>
+      <th>Host</th>
+      <th>Date</th>
+
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% if @guestships.first %>
+    <% @guestships.each do |guestship| %>
+      <tr>
+        <td><%= guestship.event.name %></td>
+        <td><%= guestship.event.user.email %></td>
+        <td><%= guestship.event.date %></td>
+      </tr>
+    <% end %>
+    <% else %>
+      <tr>
+        <td>You have no outstanding invites.</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+</div>

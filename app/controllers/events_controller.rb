@@ -4,12 +4,14 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    @events = current_user.events
   end
+
 
   # GET /events/1
   # GET /events/1.json
   def show
+    @guestships = @event.guestships.all
   end
 
   # GET /events/new
