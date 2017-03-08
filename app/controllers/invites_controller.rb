@@ -1,6 +1,7 @@
 class InvitesController < ApplicationController
   before_action :set_invite, only: [:show, :edit, :update, :destroy, :accept]
 
+
   # GET /invites
   # GET /invites.json
   def index
@@ -35,6 +36,7 @@ class InvitesController < ApplicationController
     @invite.event = @event
 
     @invite.sender_id = current_user.id
+
 
     if User.where(email: "#{@invite.email}").first
       @invite.recipient_id = User.where(email: "#{@invite.email}").first.id
@@ -85,5 +87,11 @@ class InvitesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def invite_params
       params.require(:invite).permit(:sender_id, :recipient_id, :event_id, :email)
+    end
+
+    def cannot_have_guestship
+      if (Guestship.where(email: email, event: event_id).first)
+        errors.add("Guest has already accepted an invite")
+      end
     end
 end

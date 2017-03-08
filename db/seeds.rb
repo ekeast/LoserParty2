@@ -8,3 +8,13 @@ require 'random_data'
 end
 
 users = User.all
+
+50.times do
+  event = Event.create!(
+    user: users.sample,
+    name: Random.random_sentence,
+    description: Random.paragraphs,
+    date: Random.date,
+    time: Random.time
+  )
+end
