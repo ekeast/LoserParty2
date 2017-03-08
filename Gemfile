@@ -7,6 +7,8 @@ end
 
 gem 'devise', '~> 4.2'
 
+gem 'faker', '~> 1.6', '>= 1.6.3'
+
 gem 'bootstrap', '~> 4.0.0.alpha6'
 
 gem 'random_data', '~> 1.6'
