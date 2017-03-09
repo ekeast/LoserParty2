@@ -1,10 +1,7 @@
 require 'random_data'
 require 'faker'
 #
-# first = User.find_or_create_by!(
-#   email: "ekeast328@gmail.com",
-#   password: "password"
-# )
+
 
 unless User.where(email: "ekeast328@gmail.com").first
   User.create!(
@@ -20,9 +17,6 @@ end
   )
 end
 
-def rand_time(from, to=Time.now)
-  Time.at(rand_in_range(from.to_f, to.to_f))
-end
 
 users = User.all
 
