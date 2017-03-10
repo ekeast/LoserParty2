@@ -25,23 +25,26 @@ users = User.all
     user: users.sample,
     name: Random.alphanumeric,
     description: Random.paragraphs,
-    date: Random.date,
-    time: Faker::Time.between(2.days.ago, Time.now, :all)
+    date: Faker::Date.forward(100),
+    time: Faker::Time.between(2.days.ago, Time.now, :all),
+    threshold: 10
   )
 end
 
 events = Event.all
 
 50.times do
-  sender = users.sample
-  recipient = users.sample
   event = events.sample
-  unless (sender == recipient || Invite.where( event: event, email: recipient.email).first || Guestship.where(event: event, email: recipient.email).first)
+  sender = event.user
+  recipient = users.sample
+
+  unless (sender == recipient || Invite.where(recipient: recipient, event: event).first || Guestship.where(event: event, email: recipient.email).first)
     invite = Invite.create!(
       sender: sender,
       recipient: recipient,
-      event: events.sample,
-      email: recipient.email
+      event: event,
+      email: recipient.email,
+      value: 10
     )
   end
 end

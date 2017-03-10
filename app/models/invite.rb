@@ -15,13 +15,13 @@ class Invite < ApplicationRecord
     end
 
     def already_invited
-      if (Invite.where(email: email, event: event).first)
+      if (Invite.where(recipient: recipient, event: event).first)
         errors.add(:recipient, "has already been invited")
       end
     end
 
     def invite_yourself
-      if (email == event.user.email)
+      if (recipient == event.user)
         errors.add(:recipient, "cannot be yourself")
       end
     end

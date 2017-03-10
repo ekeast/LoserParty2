@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170222174900) do
+ActiveRecord::Schema.define(version: 20170310175547) do
 
   create_table "events", force: :cascade do |t|
     t.integer  "user_id"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20170222174900) do
     t.time     "time"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "threshold"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
@@ -40,6 +41,7 @@ ActiveRecord::Schema.define(version: 20170222174900) do
     t.string   "email"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.integer  "value"
     t.index ["event_id"], name: "index_invites_on_event_id"
   end
 
