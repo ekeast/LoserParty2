@@ -33,6 +33,7 @@ class GuestshipsController < ApplicationController
     @event = Event.find(params[:event_id])
     @guestship = Guestship.create(guestship_params)
     @guestship.event = @event
+    @invite = Invite.where(recipient_id: current_user, event: @guestship.event).first
     if User.where(email: "#{@guestship.email}").first
       @guestship.user_id = User.where(email: "#{@guestship.email}").first.id
     end
@@ -41,9 +42,14 @@ class GuestshipsController < ApplicationController
 
     respond_to do |format|
       if @guestship.save && @guestship.user
+        if @event.score
+          @event.score = @event.score + @invite.value
+        else
+          @event.score = @invite.value
+        end
+        @event.save
         format.html { redirect_to event_guestships_path, notice: 'Guestship was successfully created.' }
         format.json { render :show, status: :created, location: @guestship }
-        @invite = Invite.where(recipient_id: current_user, event: @guestship.event).first
         @invite.destroy
       else
         format.html { render :new }

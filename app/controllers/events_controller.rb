@@ -68,10 +68,11 @@ class EventsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_event
       @event = Event.find(params[:id])
+      @event.score = 0
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:user_id, :name, :description, :date, :time)
+      params.require(:event).permit(:user_id, :name, :description, :date, :time, :threshold, :score)
     end
 end

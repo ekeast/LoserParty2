@@ -27,7 +27,7 @@ users = User.all
     description: Random.paragraphs,
     date: Faker::Date.forward(100),
     time: Faker::Time.between(2.days.ago, Time.now, :all),
-    threshold: 10
+    threshold: 100
   )
 end
 
