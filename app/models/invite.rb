@@ -7,6 +7,7 @@ class Invite < ApplicationRecord
   validate :invite_yourself
 
 
+
     def cannot_have_guestship
       if (Guestship.where(email: email, event: event_id).first)
         errors.add(:email, "has been taken by a guest already attending")
@@ -15,13 +16,15 @@ class Invite < ApplicationRecord
 
     def already_invited
       if (Invite.where(email: email, event: event).first)
-        errors.add(:email, "has already been invited")
+        errors.add(:recipient, "has already been invited")
       end
     end
 
     def invite_yourself
       if (email == event.user.email)
-        errors.add(:email, "Cannot invite yourself")
+        errors.add(:recipient, "cannot be yourself")
       end
     end
+
+
 end
