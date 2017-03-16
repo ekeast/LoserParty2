@@ -19,7 +19,8 @@
       <tr>
         <td><%= User.where(id: invite.sender_id).first.email %></td>
         <td><%= invite.event.name %></td>
-        <td><%= render 'guestships/form', event: invite.event, guestship: Guestship.new %></td>
+        <td><%= button_to "Accept", invite_accept_path(invite), method: :post %></td>
+        <!-- <td><%= render 'guestships/form', event: invite.event, guestship: Guestship.new %></td> -->
         <td><%= button_to 'Reject', event_invite_path(invite.event, invite), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>

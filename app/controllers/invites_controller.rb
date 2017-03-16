@@ -10,8 +10,26 @@ class InvitesController < ApplicationController
   end
 
   def my_invites
-    @invites = Invite.where(recipient: current_user)
+    @invites = Invite.where(recipient: current_user, accepted: false)
   end
+
+  def accepted_invites
+    @invites = Invite.where(recipient: current_user, accepted: true)
+  end
+
+  def accept
+    @invite.update_attribute(:accepted, true)
+    @event = @invite.event
+
+    if @event.score
+      @event.score = @event.score + @invite.value
+    else
+      @event.score = @invite.value
+    end
+
+    @event.save
+  end
+
 
   # GET /invites/1
   # GET /invites/1.json
@@ -53,19 +71,19 @@ class InvitesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /invites/1
-  # PATCH/PUT /invites/1.json
-  # def update
-  #   respond_to do |format|
-  #     if @invite.update(invite_params)
-  #       format.html { redirect_to @invite, notice: 'Invite was successfully updated.' }
-  #       format.json { render :show, status: :ok, location: @invite }
-  #     else
-  #       format.html { render :edit }
-  #       format.json { render json: @invite.errors, status: :unprocessable_entity }
-  #     end
-  #   end
-  # end
+   #PATCH/PUT /invites/1
+#  PATCH/PUT / invites/1.json
+  def update
+    respond_to do |format|
+      if @invite.update(invite_params)
+        format.html { redirect_to @invite, notice: 'Invite was successfully updated.' }
+        format.json { render :show, status: :ok, location: @invite }
+      else
+        format.html { render :edit }
+        format.json { render json: @invite.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 
   # DELETE /invites/1
   # DELETE /invites/1.json

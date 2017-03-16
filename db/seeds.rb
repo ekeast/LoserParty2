@@ -44,22 +44,23 @@ events = Event.all
       recipient: recipient,
       event: event,
       email: recipient.email,
-      value: 10
+      value: 10,
+      accepted: false
     )
   end
 end
-
-20.times do
-  user = users.sample
-  event = events.sample
-  unless (Invite.where(event: event, recipient: user).first || Guestship.where(user: user, event: event).first)
-    guest = Guestship.create!(
-      user: user,
-      event: event,
-      email: user.email
-    )
-  end
-end
+#
+# 20.times do
+#   user = users.sample
+#   event = events.sample
+#   unless (Invite.where(event: event, recipient: user).first || Guestship.where(user: user, event: event).first)
+#     guest = Guestship.create!(
+#       user: user,
+#       event: event,
+#       email: user.email
+#     )
+#   end
+# end
 
 puts "Seed finished"
 puts "#{User.count} users created"

@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
   resources :events do
     resources :guestships
-    resources :invites, except: [:show, :update]
+    resources :invites, except: [:show]
   end
   get 'home/index'
   get 'invites/my_invites'
   get 'guestships/my_guestships'
+  get 'invites/accepted_invites'
+  post 'invites/:id/accept' => 'invites#accept', as: 'invite_accept'
 
 
   devise_for :users
