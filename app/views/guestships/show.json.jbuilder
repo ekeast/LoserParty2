@@ -1,1 +1,0 @@
-json.partial! "guestships/guestship", guestship: @guestship

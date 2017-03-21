@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   resources :events do
-    resources :guestships
-    resources :invites, except: [:show]
+      resources :invites, except: [:show]
   end
   get 'home/index'
   get 'invites/my_invites'
