@@ -15,14 +15,14 @@
 
   <tbody>
     <% if @invites.first %>
-    <% @invites.each do |invite| %>
-      <tr>
-        <td><%= User.where(id: invite.sender_id).first.email %></td>
-        <td><%= invite.event.name %></td>
-        <td><%= button_to "Accept", invite_accept_path(invite), method: :post %></td>
-        <!-- <td><%= render 'guestships/form', event: invite.event, guestship: Guestship.new %></td> -->
-        <td><%= button_to 'Reject', event_invite_path(invite.event, invite), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <% @invites.each do |invite| %>
+          <tr id='invite-<%=invite.id%>'>
+            <td><%= User.where(id: invite.sender_id).first.email %></td>
+            <td><%= invite.event.name %></td>
+            <td><%= button_to "Accept", invite_accept_path(invite), method: :post, remote: true %></td>
+            <!-- <td><%= render 'guestships/form', event: invite.event, guestship: Guestship.new %></td> -->
+            <td><%= button_to 'Reject', event_invite_path(invite.event, invite), method: :delete, remote:true %></td>
+          </tr>
     <% end %>
     <% else %>
       <tr>

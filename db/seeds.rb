@@ -49,6 +49,23 @@ events = Event.all
     )
   end
 end
+
+10.times do
+  event = events.sample
+  sender = event.user
+  recipient = User.where(email: "ekeast328@gmail.com").first
+
+  unless (sender == recipient || Invite.where(recipient: recipient, event: event).first || Guestship.where(event: event, email: recipient.email).first)
+    invite = Invite.create!(
+      sender: sender,
+      recipient: recipient,
+      event: event,
+      email: recipient.email,
+      value: 10,
+      accepted: false
+    )
+  end
+end
 #
 # 20.times do
 #   user = users.sample
