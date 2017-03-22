@@ -67,7 +67,7 @@ class InvitesController < ApplicationController
 
     respond_to do |format|
       if @invite.save
-        format.html { redirect_to event_invites_path, notice: 'Invite was successfully created.' }
+        format.html { redirect_to event_invites_path }
         format.json { render :show, status: :created, location: @invite }
       else
         format.html { render :new }
@@ -95,7 +95,7 @@ class InvitesController < ApplicationController
   def destroy
     @invite.destroy
     respond_to do |format|
-      format.html { redirect_to :back, notice: 'Invite was successfully destroyed.' }
+      format.html { redirect_to :back }
       format.json { head :no_content }
     end
   end

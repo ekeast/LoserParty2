@@ -1,4 +1,5 @@
 @import "bootstrap";
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
@@ -15,3 +16,36 @@
  *= require_tree .
  *= require_self
  */
+
+ .container {
+   margin: auto;
+   width: 50%;
+   padding: 10px;
+ }
+
+ table {
+   width: 100%;
+ }
+
+body {
+  font-family: "brandon-grotesque", sans-serif;
+}
+
+.navbar {
+    background-color: #882B93;
+}
+
+a {
+  transition: 0.3s;
+  color: #F4E7E7;
+}
+
+a:hover {
+  color: #ED3ABD;
+  text-decoration: none;
+}
+
+a:active {
+  color: #ED3ABD;
+  text-decoration: none;
+}
