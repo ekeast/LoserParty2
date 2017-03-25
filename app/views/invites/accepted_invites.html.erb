@@ -17,11 +17,19 @@
   <tbody>
     <% if @invites.first %>
     <% @invites.each do |invite| %>
-      <tr>
-        <td><%= invite.event.name %></td>
-        <td><%= invite.event.user.email %></td>
-        <td><%= invite.event.date %></td>
-      </tr>
+        <% if invite.event.threshold > invite.event.score %>
+          <tr>
+            <td><%= invite.event.name %></td>
+            <td><%= invite.event.user.email %></td>
+            <td><%= invite.event.date %></td>
+          </tr>
+        <% else %>
+        <tr style="background-color:green;">
+          <td><%= invite.event.name %></td>
+          <td><%= invite.event.user.email %></td>
+          <td><%= invite.event.date %></td>
+        </tr>
+      <% end %>
     <% end %>
     <% else %>
       <tr>
