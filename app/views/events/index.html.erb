@@ -10,7 +10,6 @@
       <th>Name</th>
       <th>Date</th>
       <th>Time</th>
-      <th colspan="3"></th>
     </tr>
   </thead>
 
@@ -21,7 +20,7 @@
         <td><%= event.name %></td>
         <td><%= event.date %></td>
         <td><%= event.time %></td>
-        <td><%= link_to 'Show', event %></td>
+        <td><%= link_to 'Details', event %></td>
         <td><%= link_to 'Edit', edit_event_path(event) %></td>
         <td><%= link_to 'Send Invites', new_event_invite_path(event) %></td>
         <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
