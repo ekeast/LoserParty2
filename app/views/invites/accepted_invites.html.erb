@@ -22,12 +22,14 @@
             <td><%= invite.event.name %></td>
             <td><%= invite.event.user.email %></td>
             <td><%= invite.event.date %></td>
+            <td><%= link_to 'Details', invite.event %></td>
           </tr>
         <% else %>
         <tr style="background-color:green;">
           <td><%= invite.event.name %></td>
           <td><%= invite.event.user.email %></td>
           <td><%= invite.event.date %></td>
+          <td><%= link_to 'Details', invite.event %></td>
         </tr>
       <% end %>
     <% end %>

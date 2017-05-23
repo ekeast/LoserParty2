@@ -50,7 +50,7 @@ events = Event.all
   end
 end
 
-10.times do
+100.times do
   event = events.sample
   sender = event.user
   recipient = User.where(email: "ekeast328@gmail.com").first

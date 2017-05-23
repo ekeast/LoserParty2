@@ -1,24 +1,11 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The application was built by making an API request to TMDB for movies with release dates that were within the last three weeks in Greece.
 
-Things you may want to cover:
+As it loops through the "Now Playing" movies, it checks the TMDB movie ID to see whether or not that movie is already logged in the database.
 
-* Ruby version
+If there is not a movie with that THDB ID, it creates the movie, issuing another HTTP request to get the movie's directors. Then it issues another HTTP request for each director to retrieve his/her IMDB code.
 
-* System dependencies
+Each movie, its director, and the director's corresponding IMDB code are stored as a Movie object in the database.
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Every time the page loads, a new HTTP request is issued for a movie with a release date within the last 3 weeks, and if there are movies that are not in the database already, those movies are added.

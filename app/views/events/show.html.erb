@@ -1,8 +1,17 @@
+<div class="container">
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>User:</strong>
-  <%= @event.user %>
+<% if @event.score && @event.score >= @event.threshold %>
+<strong>This event has met the threshold! The party is on!</strong>
+<% else %>
+<strong>This event has not met the threshold yet. As of now, the party is off.</strong>
+<%end%>
+</p>
+
+<p>
+  <strong>Host:</strong>
+  <%= @event.user.email %>
 </p>
 
 <p>
@@ -25,11 +34,12 @@
   <%= @event.time %>
 </p>
 
-Guests:
+  <% if @event.score && @event.score >= @event.threshold %>
+    <strong>Attending Guests:</strong>
+    <% @invites.each do |invite| %>
+    <%= invite.email %>
+    <% end %>
+  <% end %>
 
-<% @guestships.each do |guestship| %>
-  <%= guestship.email %>
-<% end %>
-
-<%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>
+</div>

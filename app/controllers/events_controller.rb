@@ -11,7 +11,7 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
-    @guestships = @event.guestships.all
+    @invites = Invite.where(event_id: @event.id, accepted: true)
   end
 
   # GET /events/new
@@ -68,7 +68,6 @@ class EventsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_event
       @event = Event.find(params[:id])
-      @event.score = 0
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
