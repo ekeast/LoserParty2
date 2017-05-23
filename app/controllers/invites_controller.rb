@@ -59,7 +59,7 @@ class InvitesController < ApplicationController
     @invite.event = @event
 
     @invite.sender_id = current_user.id
-
+    @invite.accepted = false
 
     if User.where(email: "#{@invite.email}").first
       @invite.recipient_id = User.where(email: "#{@invite.email}").first.id
@@ -109,7 +109,7 @@ class InvitesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def invite_params
-      params.require(:invite).permit(:sender_id, :recipient_id, :event_id, :email)
+      params.require(:invite).permit(:sender_id, :recipient_id, :event_id, :email, :value)
     end
 
     def cannot_have_guestship

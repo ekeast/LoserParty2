@@ -1,45 +1,106 @@
 <div class="container">
 <p id="notice"><%= notice %></p>
 
-<p>
-<% if @event.score && @event.score >= @event.threshold %>
-<strong>This event has met the threshold! The party is on!</strong>
-<% else %>
-<strong>This event has not met the threshold yet. As of now, the party is off.</strong>
-<%end%>
-</p>
-
-<p>
-  <strong>Host:</strong>
-  <%= @event.user.email %>
-</p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @event.name %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @event.description %>
-</p>
-
-<p>
-  <strong>Date:</strong>
-  <%= @event.date %>
-</p>
-
-<p>
-  <strong>Time:</strong>
-  <%= @event.time %>
-</p>
-
+<% if @event.user != current_user %>
+  <p>
   <% if @event.score && @event.score >= @event.threshold %>
-    <strong>Attending Guests:</strong>
-    <% @invites.each do |invite| %>
-    <%= invite.email %>
-    <% end %>
-  <% end %>
+  <strong>This event has met the threshold! The party is on!</strong>
+  <% else %>
+  <strong>This event has not met the threshold yet. As of now, the party is off.</strong>
+  <%end%>
+  </p>
 
-<%= link_to 'Back', events_path %>
+  <p>
+    <strong>Host:</strong>
+    <%= @event.user.email %>
+  </p>
+
+  <p>
+    <strong>Name:</strong>
+    <%= @event.name %>
+  </p>
+
+  <p>
+    <strong>Description:</strong>
+    <%= @event.description %>
+  </p>
+
+  <p>
+    <strong>Date:</strong>
+    <%= @event.date %>
+  </p>
+
+  <p>
+    <strong>Time:</strong>
+    <%= @event.time %>
+  </p>
+
+    <% if @event.score && @event.score >= @event.threshold %>
+      <strong>Attending Guests:</strong>
+      <% @accepted_invites.each do |invite| %>
+      <%= invite.email %>
+      <% end %>
+    <% end %>
+
+  <%= link_to 'Back', events_path %>
+
+<% else %>
+  <p>
+  <% if @event.score && @event.score >= @event.threshold %>
+  <strong>This event has met the threshold! The party is on!</strong>
+  <% else %>
+  <strong>This event has not met the threshold yet. As of now, the party is off.</strong>
+  <%end%>
+  </p>
+
+  <p>
+    <strong>Host:</strong>
+    <%= @event.user.email %>
+  </p>
+
+  <p>
+    <strong>Name:</strong>
+    <%= @event.name %>
+  </p>
+
+  <p>
+    <strong>Description:</strong>
+    <%= @event.description %>
+  </p>
+
+  <p>
+    <strong>Date:</strong>
+    <%= @event.date %>
+  </p>
+
+  <p>
+    <strong>Time:</strong>
+    <%= @event.time %>
+  </p>
+
+  <strong>Invited Guests:</strong>
+  <table>
+    <thead>
+      <tr>
+        <th>Guest</th>
+        <th>Value</th>
+        <th>Accepted?</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @invites.each do |invite| %>
+    <tr>
+      <td><%= invite.email %></td>
+      <td><%= invite.value %></td>
+      <td><%= invite.accepted %></td>
+    </tr>
+    <% end %>
+    <tbody>
+  </table>
+
+
+  <%= link_to 'Back', events_path %>
+
+
+<% end %>
 </div>
