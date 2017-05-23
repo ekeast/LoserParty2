@@ -77,7 +77,7 @@
     <strong>Time:</strong>
     <%= @event.time %>
   </p>
-
+  <% if @invites.first %>
   <strong>Invited Guests:</strong>
   <table>
     <thead>
@@ -97,10 +97,15 @@
     <% end %>
     <tbody>
   </table>
-
-
+<p>
+  Invite More Guests:
+  <%= link_to 'Send Invites', new_event_invite_path(@event) %>
   <%= link_to 'Back', events_path %>
+</p>
+<% end %>
 
-
+Invite More Guests:
+<%= link_to 'Send Invites', new_event_invite_path(@event) %>
+<%= link_to 'Back', events_path %>
 <% end %>
 </div>

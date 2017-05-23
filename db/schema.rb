@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 20170313143424) do
     t.string   "email"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.integer  "value", default: 0
+    t.integer  "value"
     t.boolean  "accepted", default: false
     t.index ["event_id"], name: "index_invites_on_event_id"
   end
