@@ -3,7 +3,7 @@
 
 <h1>Events</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>User</th>
@@ -18,12 +18,12 @@
       <tr>
         <td><%= event.user.email %></td>
         <td><%= event.name %></td>
-        <td><%= event.date %></td>
-        <td><%= event.time %></td>
-        <td><%= link_to 'Details', event %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Send Invites', new_event_invite_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= event.date.strftime("%x") %></td>
+        <td><%= event.time.strftime("%I:%M %p") %></td>
+        <td><%= link_to 'Details', event, class: "reverse" %></td>
+        <td><%= link_to 'Edit', edit_event_path(event), class: "reverse" %></td>
+        <td><%= link_to 'Send Invites', new_event_invite_path(event), class: "reverse" %></td>
+        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' }, class: "reverse" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -31,5 +31,5 @@
 
 <br>
 
-<%= link_to 'New Event', new_event_path %>
+<%= link_to 'New Event', new_event_path, class: "reverse" %>
 </div>

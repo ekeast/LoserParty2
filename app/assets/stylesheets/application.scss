@@ -49,3 +49,28 @@ a:active {
   color: #ED3ABD;
   text-decoration: none;
 }
+
+.reverse {
+  transition: 0.3s;
+  color: #ED3ABD;
+}
+
+.reverse:hover {
+  color:   #882B93;
+  text-decoration: none;
+}
+
+.partyon {
+  transition: 0.3s;
+  color: #882B93;
+}
+
+.partyon:hover {
+  color: #F4E7E7;
+  text-decoration: none;
+}
+
+table {
+  white-space: nowrap;
+  border: none;
+}

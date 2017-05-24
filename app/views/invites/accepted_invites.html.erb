@@ -3,14 +3,13 @@
 
 <h1>Committed Events</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Event</th>
       <th>Host</th>
       <th>Date</th>
-
-      <th colspan="2"></th>
+      <th>Party on?</th>
     </tr>
   </thead>
 
@@ -21,15 +20,17 @@
           <tr>
             <td><%= invite.event.name %></td>
             <td><%= invite.event.user.email %></td>
-            <td><%= invite.event.date %></td>
-            <td><%= link_to 'Details', invite.event %></td>
+            <td width="20%"><%= invite.event.date %></td>
+            <td>NOPE</td>
+            <td><%= link_to 'Details', invite.event, class: "reverse" %></td>
           </tr>
         <% else %>
-        <tr style="background-color:green;">
+        <tr style="background-color:#ED3ABD;">
           <td><%= invite.event.name %></td>
           <td><%= invite.event.user.email %></td>
           <td><%= invite.event.date %></td>
-          <td><%= link_to 'Details', invite.event %></td>
+          <td>YEP</td>
+          <td><%= link_to 'Details', invite.event, class: "partyon" %></td>
         </tr>
       <% end %>
     <% end %>

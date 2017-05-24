@@ -92,20 +92,22 @@
     <tr>
       <td><%= invite.email %></td>
       <td><%= invite.value %></td>
-      <td><%= invite.accepted %></td>
+      <%if invite.accepted%>
+      <td>YES</td>
+      <% else %>
+      <td>Nope</td>
+      <% end %>
     </tr>
     <% end %>
     <tbody>
   </table>
-<p>
-  Invite More Guests:
-  <%= link_to 'Send Invites', new_event_invite_path(@event) %>
-  <%= link_to 'Back', events_path %>
-</p>
 <% end %>
 
+<p>
 Invite More Guests:
 <%= link_to 'Send Invites', new_event_invite_path(@event) %>
 <%= link_to 'Back', events_path %>
 <% end %>
+</p>
+
 </div>
