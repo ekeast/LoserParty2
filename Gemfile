@@ -7,6 +7,9 @@ end
 
 gem 'devise', '~> 4.2'
 
+gem 'whenever', '~> 0.9.7', :require => false
+
+
 gem 'faker', '~> 1.6', '>= 1.6.3'
 
 gem 'bootstrap', '~> 4.0.0.alpha6'
