@@ -42,6 +42,7 @@
       <% end %>
     <% end %>
 
+
   <%= link_to 'Back', events_path %>
 
 <% else %>
@@ -78,6 +79,7 @@
     <%= @event.time %>
   </p>
   <% if @invites.first %>
+  <p>
   <strong>Invited Guests:</strong>
   <table>
     <thead>
@@ -101,12 +103,13 @@
     <% end %>
     <tbody>
   </table>
+</p>
 <% end %>
 
 <p>
 Invite More Guests:
-<%= link_to 'Send Invites', new_event_invite_path(@event) %>
-<%= link_to 'Back', events_path %>
+<%= link_to 'Send More Invites', new_event_invite_path(@event), class: "reverse" %> |
+<%= link_to 'Back', events_path, class: "reverse" %>
 <% end %>
 </p>
 

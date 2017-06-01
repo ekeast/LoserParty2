@@ -13,6 +13,9 @@ class EventsController < ApplicationController
   def show
     @accepted_invites = Invite.where(event_id: @event.id, accepted: true)
     @invites = Invite.where(event_id: @event.id)
+
+    @user_invite = Invite.where(recipient_id: current_user.id, event_id: @event.id, accepted: false).first
+
   end
 
   # GET /events/new
