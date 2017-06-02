@@ -43,7 +43,7 @@
     <% end %>
 
 
-  <%= link_to 'Back', events_path %>
+  <%= link_to 'Back', :back, class: "reverse" %>
 
 <% else %>
   <p>
@@ -109,7 +109,7 @@
 <p>
 Invite More Guests:
 <%= link_to 'Send More Invites', new_event_invite_path(@event), class: "reverse" %> |
-<%= link_to 'Back', events_path, class: "reverse" %>
+<%= link_to 'Back', :back, class: "reverse" %>
 <% end %>
 </p>
 
